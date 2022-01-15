@@ -130,6 +130,11 @@ func mustRegisterOrGet(reg prometheus.Registerer, c prometheus.Collector) promet
 	return c
 }
 
+type (
+	EntryHandler = api.EntryHandler
+	Entry        = api.Entry
+)
+
 // Client pushes entries to Loki and can be stopped
 type Client interface {
 	api.EntryHandler
