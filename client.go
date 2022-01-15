@@ -164,7 +164,7 @@ func New(reg prometheus.Registerer, cfg Config, logger log.Logger) (Client, erro
 }
 
 func newClient(reg prometheus.Registerer, cfg Config, logger log.Logger) (*client, error) {
-	if cfg.URL.URL == nil {
+	if cfg.URL == nil {
 		return nil, errors.New("client needs target URL")
 	}
 
@@ -176,7 +176,7 @@ func newClient(reg prometheus.Registerer, cfg Config, logger log.Logger) (*clien
 		entries: make(chan api.Entry),
 		metrics: newMetrics(reg),
 
-		externalLabels: cfg.ExternalLabels.LabelSet,
+		externalLabels: cfg.ExternalLabels,
 		ctx:            ctx,
 		cancel:         cancel,
 	}
